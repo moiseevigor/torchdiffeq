@@ -5,8 +5,12 @@ jobs:
       - image: python:3.8
     steps:
       - checkout
-      - run: python setup.py install
+      - run: 
+          name: Check Python version
+          command: |
+            python --version; pip list
+      - run: python setup.py install; pip list
       - run: 
           name: Running tests
           command: |
-            python tests/api_tests.py 
+            python tests/run_all.py
