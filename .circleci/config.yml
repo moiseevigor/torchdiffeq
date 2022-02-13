@@ -15,4 +15,4 @@ jobs:
           command: |
             python tests/run_all.py
       - store_test_results:
-        path: test-results
+          path: test-results
