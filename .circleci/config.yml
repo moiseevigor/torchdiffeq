@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:3
+    steps:
+      - checkout
+      - run: python setup.py install
+      - run: 
+          name: Running tests
+          command: |
+            python tests/api_tests.py 
