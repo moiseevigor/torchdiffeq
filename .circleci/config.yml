@@ -13,6 +13,6 @@ jobs:
       - run: 
           name: Running tests
           command: |
-            python tests/run_all.py
+            python tests/api_tests.py
       - store_test_results:
           path: /tmp/test-results
