@@ -5,14 +5,19 @@ jobs:
       - image: python:3.8
     steps:
       - checkout
+
       - run: 
-          name: Check Python version
+          name: Install torchdiffeq and output `pip list`
           command: |
-            python --version; pip list
-      - run: python setup.py install; pip list
+            python setup.py install
+            pip list
+
       - run: 
-          name: Running tests
+          name: Run tests
           command: |
-            python tests/run_all.py
+            mkdir test-results
+            pip install pytest
+            pytest --junitxml=test-results/junit.xml tests/run_all.py
+
       - store_test_results:
           path: test-results
