@@ -14,3 +14,5 @@ jobs:
           name: Running tests
           command: |
             python tests/run_all.py
+      - store_test_results:
+        path: test-results
