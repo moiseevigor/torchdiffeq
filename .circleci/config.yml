@@ -7,12 +7,12 @@ jobs:
       - checkout
 
       - run:
-        name: Setup testing environment, installing torchdiffeq and output `pip list`
-        command: |
-          pip install '.[test]' --user pytest coverage
-          pip list
-          mkdir -p test-results
-          echo "HOME: " $HOME
+          name: Setup testing environment, installing torchdiffeq and output `pip list`
+          command: |
+            pip install '.[test]' --user pytest coverage
+            pip list
+            mkdir -p test-results
+            echo "HOME: " $HOME
 
       - run: 
           name: Run tests
@@ -25,4 +25,4 @@ jobs:
           path: test-results
       
       - store_artifacts:
-        path: htmlcov
+          path: htmlcov
