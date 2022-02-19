@@ -6,18 +6,23 @@ jobs:
     steps:
       - checkout
 
-      - run: 
-          name: Install torchdiffeq and output `pip list`
-          command: |
-            python setup.py install
-            pip list
+      - run:
+        name: Setup testing environment, installing torchdiffeq and output `pip list`
+        command: |
+          pip install '.[test]' --user pytest coverage
+          pip list
+          mkdir -p test-results
+          echo "HOME: " $HOME
 
       - run: 
           name: Run tests
           command: |
-            mkdir test-results
-            pip install pytest
-            pytest --junitxml=test-results/junit.xml tests/run_all.py
+            $HOME/.local/bin/coverage run -m pytest --junitxml=test-results/junit.xml tests/run_all.py
+            $HOME/.local/bin/coverage report
+            $HOME/.local/bin/coverage html
 
       - store_test_results:
           path: test-results
+      
+      - store_artifacts:
+        path: htmlcov
