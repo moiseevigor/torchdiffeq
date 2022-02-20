@@ -17,9 +17,9 @@ jobs:
       - run: 
           name: Run tests
           command: |
-            $HOME/.local/bin/coverage run -m pytest --junitxml=test-results/junit.xml tests/api_tests.py
+            $HOME/.local/bin/coverage run -m pytest --junitxml=test-results/junit.xml tests/run_all.py
             $HOME/.local/bin/coverage report
-            $HOME/.local/bin/coverage html --directory=/root/project/htmlcov 
+            $HOME/.local/bin/coverage html --directory=$HOME/project/htmlcov 
 
       - store_test_results:
           path: test-results
